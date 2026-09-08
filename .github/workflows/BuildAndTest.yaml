@@ -1,9 +1,14 @@
 name: Backend application build and test
+
 on:
   workflow_dispatch:
+
 jobs:
   build-and-test-job:
     runs-on: windows-latest
     steps:
+      - name: checkout repository
+        users: actions/checkout@v4
+        
       - name: build
         run: dotnet build
