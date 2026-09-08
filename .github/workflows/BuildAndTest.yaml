@@ -1,7 +1,9 @@
 name: Backend application build and test
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   build-and-test-job:
