@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 jobs:
   build-and-test-job:
-  runs-on: 	windows-latest
-  steps:
-    - name: build
-      run: dotnet build
+    runs-on: windows-latest
+    steps:
+      - name: build
+        run: dotnet build
