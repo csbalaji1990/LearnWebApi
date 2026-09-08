@@ -12,5 +12,8 @@ jobs:
       - name: checkout repository
         uses: actions/checkout@v4
 
+      - name: check dotnet version
+        run: dotnet --version
+
       - name: build
         run: dotnet build
