@@ -21,4 +21,3 @@ EXPOSE 8080
 ENV ASPNETCORE_HTTP_PORTS=8080
 
 ENTRYPOINT ["dotnet", "LearnWebApi.dll"]
-```
