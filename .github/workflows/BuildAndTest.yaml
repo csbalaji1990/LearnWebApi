@@ -6,11 +6,11 @@ on:
       - main
       
 env:
-  Docker_Image_Name: csbalaji1990/learn-docker:gha
+  Docker_Image_Name: csbalaji1990/learn-docker:ghaw
 
 jobs:
   build-and-test-job:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: checkout repository
         uses: actions/checkout@v4
@@ -31,7 +31,7 @@ jobs:
           password: ${{ secrets.Docker_Password }}        
       
       - name: docker image push
-        run: docker push csbalaji1990/learn-docker:gha
+        run: docker push ${{ env.Docker_Image_Name }}
         
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v3
