@@ -16,8 +16,8 @@ WORKDIR /app
 
 COPY --from=build /app/publish .
 
-EXPOSE 8080
+EXPOSE 80
 
-ENV ASPNETCORE_HTTP_PORTS=8080
+ENV ASPNETCORE_HTTP_PORTS=80
 
 ENTRYPOINT ["dotnet", "LearnWebApi.dll"]
