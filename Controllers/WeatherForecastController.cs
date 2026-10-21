@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace LearnWebApi.Controllers;
 
@@ -6,6 +7,13 @@ namespace LearnWebApi.Controllers;
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
 {
+    public readonly JwtSettings _jwtSettings;
+
+    public WeatherForecastController(IOptions<JwtSettings> options)
+    {
+        _jwtSettings = options.Value;
+    }
+
     private static readonly string[] Summaries =
     [
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
