@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+      
+env:
+  Docker_Image_Name: csbalaji1990/learn-docker:gha
 
 jobs:
   build-and-test-job:
@@ -19,7 +22,7 @@ jobs:
         run: dotnet build
         
       - name: docker image build
-        run: docker build -t csbalaji1990/learn-docker:gha .
+        run: docker build -t ${{ env.Docker_Image_Name }} .
         
       - name: docker login
         uses: docker/login-action@v4
@@ -29,3 +32,10 @@ jobs:
       
       - name: docker image push
         run: docker push csbalaji1990/learn-docker:gha
+        
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ vars.AZURE_APP_NAME }}
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+          images: ${{ env.Docker_Image_Name }}
