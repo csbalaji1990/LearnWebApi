@@ -26,3 +26,6 @@ jobs:
         with:
           username: ${{ vars.Docker_Username }}
           password: ${{ secrets.Docker_Password }}        
+      
+      - name: docker image push
+        run: docker push csbalaji1990/learn-docker:gha
