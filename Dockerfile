@@ -1,5 +1,5 @@
 # Build stage
-FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0-windowsservercore-ltsc2022 AS build
 WORKDIR /src
 
 # Copy project file and restore dependencies
@@ -16,8 +16,8 @@ WORKDIR /app
 
 COPY --from=build /app/publish .
 
-EXPOSE 80
+EXPOSE 8080
 
-ENV ASPNETCORE_HTTP_PORTS=80
+ENV ASPNETCORE_HTTP_PORTS=8080
 
 ENTRYPOINT ["dotnet", "LearnWebApi.dll"]
