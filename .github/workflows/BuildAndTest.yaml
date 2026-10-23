@@ -21,21 +21,12 @@ jobs:
       - name: build
         run: dotnet build
         
-      - name: docker image build
-        run: docker build -t ${{ env.Docker_Image_Name }} .
-        
-      - name: docker login
-        uses: docker/login-action@v4
-        with:
-          username: ${{ vars.Docker_Username }}
-          password: ${{ secrets.Docker_Password }}        
-      
-      - name: docker image push
-        run: docker push ${{ env.Docker_Image_Name }}
+      - name: Publish
+        run: dotnet publish --configuration Release --output ./publish        
         
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v3
         with:
           app-name: ${{ vars.AZURE_APP_NAME }}
           publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-          images: ${{ env.Docker_Image_Name }}
+          package: ./publish
